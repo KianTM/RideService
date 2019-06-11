@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace RideService.Entities
 {
@@ -31,7 +32,7 @@ namespace RideService.Entities
                 }
                 else
                 {
-                    throw new NotImplementedException();
+                    return Reports.LastOrDefault().Status;
                 }
             }
         }
@@ -40,7 +41,21 @@ namespace RideService.Entities
 
         public string GetShortDescription()
         {
-            return Description.Remove(50);
+            return $"{Description.Remove(50)}...";
+        }
+
+        public string GetStatusAsString()
+        {
+            switch (Status)
+            {
+                case Status.Working:
+                    return "Kører";
+                case Status.BeingRepaired:
+                    return "Under reperation...";
+                case Status.Broken:
+                    return "I stykker";
+            }
+            throw new InvalidOperationException();
         }
     }
 }
