@@ -9,11 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RideService.DAL", "RideServ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RideService.Entities", "RideService.Entities\RideService.Entities.csproj", "{C9786C48-76B6-4CD7-92E6-214CF6453E41}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{571A091E-154A-429A-8CCA-7AC4BE37CBCE}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\Documents\Moduler\S2\Uge 4\CreateRideServiceDB.sql = ..\..\..\Documents\Moduler\S2\Uge 4\CreateRideServiceDB.sql
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
