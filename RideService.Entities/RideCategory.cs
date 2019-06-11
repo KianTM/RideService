@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RideService.Entities
 {
-    class RideCategory
+    public class RideCategory
     {
         public RideCategory()
         {
