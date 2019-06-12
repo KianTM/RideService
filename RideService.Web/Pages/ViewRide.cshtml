@@ -5,15 +5,17 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Forlystelse</h1>
-<img src="~/img/headers/@(Model.Ride.Name)-big.jpg" alt="@Model.Ride.Name" />
-<br />
-<p>Navn: @Model.Ride.Name</p>
-<br />
-<p>Categori: @Model.Ride.Category.Name</p>
-<br />
-<p>Beskrivelse: @Model.Ride.Description</p>
-<br />
-<p>Nedbrud i alt: @Model.Ride.GetTotalBreakdowns()</p>
-<br />
-<p>Dage siden sidste nedbrud: @Model.BreakdownsMessage</p>
+<article>
+    <h1>Forlystelse</h1>
+    <img src="~/img/headers/@(Model.Ride.Name)-big.jpg" alt="@Model.Ride.Name" />
+    <hr />
+    <p>Navn: @Model.Ride.Name</p>
+    <hr />
+    <p>Categori: @Model.Ride.Category.Name</p>
+    <hr />
+    <p>Beskrivelse: @Model.Ride.Description</p>
+    <hr />
+    <p>Nedbrud i alt: @Model.Ride.GetTotalBreakdowns()</p>
+    <hr />
+    <p>Dage siden sidste nedbrud: @Model.BreakdownsMessage</p>
+</article>
