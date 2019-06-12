@@ -5,14 +5,16 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<article>
-    <h3>Test</h3>
-    <hr />
-    <img src="http://www.unsplash.it/350/350" alt="Alternate Text" />
-    <div class="oprettet">
-        <p>hgkhsd</p>
-    </div>
-    <div>
-        <p>sdfsdh</p>
-    </div>
-</article>
+@{
+    foreach (Ride ride in Model.AllRides)
+    {
+        <article>
+            <h2>@ride.Name</h2>
+            <hr />
+            <img src="~/img/thumbnails/@(ride.Name).jpg" alt="@ride.Name" />
+            <h3>Status: @ride.GetStatusAsString()</h3>
+            <hr />
+            <p>@ride.GetShortDescription()</p>
+        </article>
+    }
+}
