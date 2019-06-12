@@ -49,7 +49,7 @@ namespace RideService.Entities
             return $"{Description.Remove(50)}...";
         }
 
-        public string GetStatusAsString()
+        public string GetStatus()
         {
             switch (Status)
             {
@@ -69,7 +69,7 @@ namespace RideService.Entities
             reports.Add(report);
         }
 
-        public int GetTotalBreakdowns()
+        public int GetTotalBreakdowns() // This method assumes that every report where (Status == Status.Broken) are individual breakdowns, not the same breakdown reported multiple times.
         {
             int breakdowns = 0;
             foreach(Report r in ReportsOrdered)
@@ -92,6 +92,11 @@ namespace RideService.Entities
                     latestBreakdown = r.Date;
                     break;
                 }
+            }
+
+            if (latestBreakdown == default(DateTime))
+            {
+                return 0;
             }
             TimeSpan timeSpan = DateTime.Today - latestBreakdown;
             return timeSpan.Days;
