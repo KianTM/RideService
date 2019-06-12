@@ -14,13 +14,13 @@ namespace RideService.Entities
         {
             Id = id;
             Status = Status;
-            Date = date;
+            ReportTime = date;
             Notes = notes;
         }
 
         public int Id { get; set; }
         public Status Status { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime ReportTime { get; set; }
         public string Notes { get; set; }
         public Ride Ride { get; set; }
     }

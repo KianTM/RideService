@@ -40,7 +40,7 @@ namespace RideService.Entities
         public IReadOnlyList<Report> ReportsOrdered { 
             get
             {
-                return reports.OrderByDescending(r => r.Date).ToList().AsReadOnly();
+                return reports.OrderByDescending(r => r.ReportTime).ToList().AsReadOnly();
             }
         }
 
@@ -89,7 +89,7 @@ namespace RideService.Entities
             {
                 if (r.Status == Status.Broken)
                 {
-                    latestBreakdown = r.Date;
+                    latestBreakdown = r.ReportTime;
                     break;
                 }
             }
