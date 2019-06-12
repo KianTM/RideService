@@ -7,17 +7,17 @@ namespace RideService.Entities
 {
     public class Ride
     {
+        private List<Report> reports = new List<Report>();
         public Ride()
         {
         }
 
-        public Ride(int id, string name, string description, RideCategory category, List<Report> reports)
+        public Ride(int id, string name, string description, RideCategory category)
         {
             Id = id;
             Name = name;
             Description = description;
             Category = category;
-            Reports = reports;
         }
 
         public int Id { get; set; }
@@ -37,7 +37,12 @@ namespace RideService.Entities
             }
         }
         public RideCategory Category { get; }
-        public List<Report> Reports { get; set; }
+        public IReadOnlyList<Report> Reports { 
+            get
+            {
+                return reports.AsReadOnly();
+            }
+        }
 
         public string GetShortDescription()
         {
@@ -56,6 +61,12 @@ namespace RideService.Entities
                     return "I stykker";
             }
             throw new InvalidOperationException();
+        }
+
+        public void AddReport(Report report)
+        {
+            report.Ride = this;
+            reports.Add(report);
         }
     }
 }

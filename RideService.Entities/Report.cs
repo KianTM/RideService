@@ -10,13 +10,12 @@ namespace RideService.Entities
         {
         }
 
-        public Report(int id, Status status, DateTime dateTime, string notes, Ride ride)
+        public Report(int id, Status status, DateTime dateTime, string notes)
         {
             Id = id;
             Status = Status;
             DateTime = dateTime;
             Notes = notes;
-            Ride = ride;
         }
 
         public int Id { get; set; }

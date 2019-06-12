@@ -12,6 +12,7 @@ namespace RideService.DAL
     {
         public List<Ride> HandleData(DataTable dataTable)
         {
+            ReportRepository reportRepository = new ReportRepository();
             CategoryRepository catRepo = new CategoryRepository();
             List<RideCategory> categories = catRepo.GetAllCategories();
             List<Ride> rides = new List<Ride>();
@@ -32,10 +33,8 @@ namespace RideService.DAL
                         break;
                     }
                 }
-
-                List<Report> reports = new List<Report>();
-
-                Ride ride = new Ride(id, name, description, rideCategory, reports);
+                Ride ride = new Ride(id, name, description, rideCategory);
+                reportRepository.SetAllReportsForRide(ride);
                 rides.Add(ride);
             }
 
