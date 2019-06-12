@@ -26,21 +26,21 @@ namespace RideService.Entities
         public Status Status {
             get
             {
-                if (Reports.Count == 0)
+                if (ReportsOrdered.Count == 0)
                 {
                     return Status.Working;
                 }
                 else
                 {
-                    return Reports.LastOrDefault().Status;
+                    return ReportsOrdered[0].Status;
                 }
             }
         }
         public RideCategory Category { get; }
-        public IReadOnlyList<Report> Reports { 
+        public IReadOnlyList<Report> ReportsOrdered { 
             get
             {
-                return reports.AsReadOnly();
+                return reports.OrderByDescending(r => r.DateTime).ToList().AsReadOnly();
             }
         }
 
@@ -67,6 +67,19 @@ namespace RideService.Entities
         {
             report.Ride = this;
             reports.Add(report);
+        }
+
+        public int GetTotalBreakdowns()
+        {
+            int breakdowns = 0;
+            foreach(Report r in ReportsOrdered)
+            {
+                if (r.Status == Status.Broken)
+                {
+                    breakdowns++;
+                }
+            }
+            return breakdowns;
         }
     }
 }
