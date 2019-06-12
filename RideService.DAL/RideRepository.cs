@@ -47,5 +47,13 @@ namespace RideService.DAL
             DataTable dataTable = ExecuteQuery(sql);
             return HandleData(dataTable);
         }
+
+        public Ride GetRide(int id)
+        {
+            string sql = $"SELECT * FROM Rides WHERE RideId={id}";
+            DataTable dataTable = ExecuteQuery(sql);
+            List<Ride> rides = HandleData(dataTable);
+            return rides[0];
+        }
     }
 }

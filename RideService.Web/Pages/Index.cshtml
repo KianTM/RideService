@@ -11,8 +11,8 @@
         <article>
             <h2>@ride.Name</h2>
             <hr />
-            <img src="~/img/thumbnails/@(ride.Name).jpg" alt="@ride.Name" />
-            <h3>Status: @ride.GetStatusAsString()</h3>
+            <a href="ViewRide/@ride.Id"><img src="~/img/thumbnails/@(ride.Name).jpg" alt="@ride.Name" /></a>
+            <h3>Status: @ride.GetStatus()</h3>
             <hr />
             <p>@ride.GetShortDescription()</p>
         </article>
