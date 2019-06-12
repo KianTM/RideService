@@ -53,7 +53,14 @@ namespace RideService.DAL
             string sql = $"SELECT * FROM Rides WHERE RideId={id}";
             DataTable dataTable = ExecuteQuery(sql);
             List<Ride> rides = HandleData(dataTable);
+
+            if (rides.Count == 0)
+            {
+                return null;
+            }
+
             return rides[0];
+
         }
     }
 }
