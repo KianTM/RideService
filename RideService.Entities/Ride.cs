@@ -40,7 +40,7 @@ namespace RideService.Entities
         public IReadOnlyList<Report> ReportsOrdered { 
             get
             {
-                return reports.OrderByDescending(r => r.DateTime).ToList().AsReadOnly();
+                return reports.OrderByDescending(r => r.Date).ToList().AsReadOnly();
             }
         }
 
@@ -80,6 +80,21 @@ namespace RideService.Entities
                 }
             }
             return breakdowns;
+        }
+
+        public int DaysSinceBreakdown()
+        {
+            DateTime latestBreakdown = new DateTime();
+            foreach (Report r in ReportsOrdered)
+            {
+                if (r.Status == Status.Broken)
+                {
+                    latestBreakdown = r.Date;
+                    break;
+                }
+            }
+            TimeSpan timeSpan = DateTime.Today - latestBreakdown;
+            return timeSpan.Days;
         }
     }
 }
