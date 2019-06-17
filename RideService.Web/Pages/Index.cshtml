@@ -6,16 +6,17 @@
 }
 
 <form action="Search" method="get">
-    <input name="NameQuery" size="20" placeholder="Indtast forstylsesnavn her..."/>
+    <input name="nameQuery" size="20" placeholder="Indtast forstylsesnavn her..."/>
     <select name="CategoryQuery">
-        <option selected="selected" value="0">Vandforlystelse</option>
-        <option value="1">Pendulforlystelse</option>
-        <option value="2">Rutsjebane</option>
+        @foreach(RideCategory category in Model.Categories)
+         {
+            <option value="@category.Id">@category.Name</option>
+         }
     </select>
     <select name="StatusQuery">
-        <option value="0">Kører</option>
-        <option value="1">Ude af drift</option>
-        <option value="2">Under reperation</option>
+        <option value="@((int)Status.Working)">Kører</option>
+        <option value="@((int)Status.Broken)">Ude af drift</option>
+        <option value="@((int)Status.BeingRepaired)">Under reperation</option>
     </select>
     <button>Submit</button>
 </form>
