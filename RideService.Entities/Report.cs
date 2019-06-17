@@ -13,7 +13,7 @@ namespace RideService.Entities
         public Report(int id, Status status, DateTime date, string notes)
         {
             Id = id;
-            Status = Status;
+            Status = status;
             ReportTime = date;
             Notes = notes;
         }
