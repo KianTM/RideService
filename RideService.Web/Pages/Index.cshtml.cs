@@ -12,8 +12,11 @@ namespace RideService.Web.Pages
     public class IndexModel : PageModel
     {
         public List<Ride> AllRides { get; set; }
+        public List<RideCategory> Categories { get; set; }
         public void OnGet()
         {
+            CategoryRepository cr = new CategoryRepository();
+            Categories = cr.GetAllCategories();
             RideRepository rr = new RideRepository();
             AllRides = rr.GetAllRides();
         }
