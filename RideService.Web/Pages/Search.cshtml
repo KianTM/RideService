@@ -1,0 +1,23 @@
+﻿@page
+@model RideService.Web.Pages.SearchModel
+@{
+    ViewData["Title"] = "Search";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<h1>Søgning</h1>
+
+@{
+    foreach (Ride ride in Model.FilteredRides)
+    {
+        <article>
+            <a href="/ViewRide/@ride.Id"><img src="/img/headers/@(ride.Name)-big.jpg" alt="@ride.Name" /></a>
+            <hr />
+            <p>Navn: @ride.Name</p>
+            <hr />
+            <p>Categori: @ride.Category.Name</p>
+            <hr />
+            <p>Status: @ride.GetStatus()</p>
+        </article>
+    }
+}
+

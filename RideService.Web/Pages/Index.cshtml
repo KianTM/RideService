@@ -5,13 +5,27 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
+<form action="Search" method="get">
+    <input name="NameQuery" size="20" placeholder="Indtast forstylsesnavn her..."/>
+    <select name="CategoryQuery">
+        <option selected="selected" value="0">Vandforlystelse</option>
+        <option value="1">Pendulforlystelse</option>
+        <option value="2">Rutsjebane</option>
+    </select>
+    <select name="StatusQuery">
+        <option value="0">Kører</option>
+        <option value="1">Ude af drift</option>
+        <option value="2">Under reperation</option>
+    </select>
+    <button>Submit</button>
+</form>
 @{
     foreach (Ride ride in Model.AllRides)
     {
         <article>
             <h2>@ride.Name</h2>
             <hr />
-            <x:a asp-page="ViewRide" asp-route-index="@(ride.Id)" ><img src="/img/thumbnails/@(ride.Name).jpg" alt="@ride.Name" /></x:a>
+            <x:a asp-page="ViewRide" asp-route-index="@(ride.Id)"><img src="/img/thumbnails/@(ride.Name).jpg" alt="@ride.Name" /></x:a>
             <h3>Status: @ride.GetStatus()</h3>
             <hr />
             <p>@ride.GetShortDescription()</p>

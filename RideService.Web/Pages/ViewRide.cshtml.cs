@@ -23,7 +23,7 @@ namespace RideService.Web.Pages
             Ride = riRepo.GetRide(Index);
             if (Ride.DaysSinceBreakdown() == 0)
             {
-                BreakdownsMessage = "Denne forlystelse har aldrig brudt ned.";
+                BreakdownsMessage = "Aldrig";
             }
             else
             {
