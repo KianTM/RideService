@@ -8,6 +8,7 @@
 
 <article>
     <form method="post">
+        @Html.AntiForgeryToken();
         <input type="text" name="Ride.Name" placeholder="Indtast navn..." size="10" />
         <input type="text" name="Ride.Description" placeholder="Indtast beskrivelse..." size="20" />
         <select name="CategoryId">
@@ -25,7 +26,7 @@
         <hr />
         <p>@Model.Ride.Description</p>
         <hr />
-        <p>Kategori: @Model.Ride.Category.Name</p>
+        <p>Kategori: @Model.Ride.Category.Name;</p>
         <hr />
         <p>Status: @Model.Ride.GetStatus()</p>
     }

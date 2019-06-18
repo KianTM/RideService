@@ -64,7 +64,7 @@ namespace RideService.DAL
 
         public void AddRideToDB(Ride ride)
         {
-            string sql = $"INSERT INTO Rides VALUES ('{ride.Name}', '{ride.Description}', {ride.Category})";
+            string sql = $"INSERT INTO Rides VALUES ('{ride.Name}', '{ride.Description}', {ride.Category.Id})";
             ExecuteNonQuery(sql);
         }
     }

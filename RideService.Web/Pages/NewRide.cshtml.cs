@@ -11,6 +11,11 @@ namespace RideService.Web.Pages
 {
     public class NewRideModel : PageModel
     {
+        public NewRideModel()
+        {
+            CategoryRepository cr = new CategoryRepository();
+            Categories = cr.GetAllCategories();
+        }
         [BindProperty]
         public Ride Ride { get; set; }
         [BindProperty]
@@ -19,8 +24,7 @@ namespace RideService.Web.Pages
 
         public void OnGet()
         {
-            CategoryRepository cr = new CategoryRepository();
-            Categories = cr.GetAllCategories();
+            
         }
 
         public void OnPost()
@@ -33,6 +37,8 @@ namespace RideService.Web.Pages
                     break;
                 }
             }
+            RideRepository rr = new RideRepository();
+            rr.AddRideToDB(Ride);
         }
     }
 }
