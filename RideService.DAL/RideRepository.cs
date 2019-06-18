@@ -60,7 +60,12 @@ namespace RideService.DAL
             }
 
             return rides[0];
+        }
 
+        public void AddRideToDB(Ride ride)
+        {
+            string sql = $"INSERT INTO Rides VALUES ('{ride.Name}', '{ride.Description}', {ride.Category})";
+            ExecuteNonQuery(sql);
         }
     }
 }

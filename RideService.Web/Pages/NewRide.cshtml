@@ -1,0 +1,32 @@
+﻿@page
+@model RideService.Web.Pages.NewRideModel
+@{
+    ViewData["Title"] = "NewRide";
+}
+
+<h1>Opret ny ride</h1>
+
+<article>
+    <form method="post">
+        <input type="text" name="Ride.Name" placeholder="Indtast navn..." size="10" />
+        <input type="text" name="Ride.Description" placeholder="Indtast beskrivelse..." size="20" />
+        <select name="CategoryId">
+            @foreach (RideCategory category in Model.Categories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+        <button>Indsend</button>
+    </form>
+    <hr />
+    @if (Model.Ride != null)
+    {
+        <h2>@Model.Ride.Name</h2>
+        <hr />
+        <p>@Model.Ride.Description</p>
+        <hr />
+        <p>Kategori: @Model.Ride.Category.Name</p>
+        <hr />
+        <p>Status: @Model.Ride.GetStatus()</p>
+    }
+</article>
