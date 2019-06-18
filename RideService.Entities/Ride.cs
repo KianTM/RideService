@@ -36,7 +36,7 @@ namespace RideService.Entities
                 }
             }
         }
-        public RideCategory Category { get; }
+        public RideCategory Category { get; set; }
         public IReadOnlyList<Report> ReportsOrdered { 
             get
             {
