@@ -98,7 +98,7 @@ namespace RideService.Entities
             {
                 return 0;
             }
-            TimeSpan timeSpan = DateTime.Today - latestBreakdown;
+            TimeSpan timeSpan = DateTime.Now - latestBreakdown;
             return timeSpan.Days;
         }
     }

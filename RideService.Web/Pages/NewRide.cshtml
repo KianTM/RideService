@@ -9,8 +9,8 @@
 <article>
     <form method="post">
         @Html.AntiForgeryToken();
-        <input type="text" name="Ride.Name" placeholder="Indtast navn..." size="10" />
-        <input type="text" name="Ride.Description" placeholder="Indtast beskrivelse..." size="20" />
+        <input type="text" name="Ride.Name" placeholder="Indtast navn..." size="10" required />
+        <input type="text" name="Ride.Description" placeholder="Indtast beskrivelse..." size="20" required />
         <select name="CategoryId">
             @foreach (RideCategory category in Model.Categories)
             {

@@ -63,11 +63,9 @@ input {
 }
 
 header {
-    background-image: url("../img/header.jpg");
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 15vw;
 }
 
     header h1 {
