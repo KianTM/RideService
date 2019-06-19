@@ -96,7 +96,7 @@ namespace RideService.Entities
 
             if (latestBreakdown == default(DateTime))
             {
-                return 0;
+                return -1;
             }
             TimeSpan timeSpan = DateTime.Now - latestBreakdown;
             return timeSpan.Days;

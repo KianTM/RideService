@@ -36,8 +36,7 @@ namespace RideService.Web.Pages
         {
             RideRepository riRepo = new RideRepository();
             Ride = riRepo.GetRide(Index);
-            int TotalBreakdowns = Ride.GetTotalBreakdowns();
-            if (Ride.DaysSinceBreakdown() >= 0 && TotalBreakdowns > 0)
+            if (Ride.DaysSinceBreakdown() >= 0)
                 BreakdownsMessage = $"{Ride.DaysSinceBreakdown()}";
             else
                 BreakdownsMessage = "Aldrig";
