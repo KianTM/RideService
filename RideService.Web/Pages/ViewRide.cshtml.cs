@@ -14,21 +14,32 @@ namespace RideService.Web.Pages
         [BindProperty(SupportsGet = true)]
         public int Index { get; set; }
         public Ride Ride { get; set; }
+        [BindProperty]
+        public Report Report { get; set; }
         public string BreakdownsMessage { get; set; }
 
         public void OnGet()
         {
+            InitializeData();
+        }
+
+        public void OnPost()
+        {
+            InitializeData();
+            ReportRepository reRepo = new ReportRepository();
+            Report.ReportTime = DateTime.Now;
+            Report.Ride = Ride;
+            reRepo.AddReportToDB(Report);
+        }
+
+        public void InitializeData()
+        {
             RideRepository riRepo = new RideRepository();
-            ViewData["index"] = Index;
             Ride = riRepo.GetRide(Index);
-            if (Ride.DaysSinceBreakdown() == 0)
-            {
-                BreakdownsMessage = "Aldrig";
-            }
-            else
-            {
+            if (Ride.DaysSinceBreakdown() >= 0)
                 BreakdownsMessage = $"{Ride.DaysSinceBreakdown()}";
-            }
+            else
+                BreakdownsMessage = "Aldrig";
         }
     }
 }

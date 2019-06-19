@@ -7,7 +7,7 @@ using RideService.Entities;
 
 namespace RideService.DAL
 {
-    class ReportRepository : BaseRepository
+    public class ReportRepository : BaseRepository
     {
         public List<Report> HandleData(DataTable dataTable)
         {
@@ -35,7 +35,12 @@ namespace RideService.DAL
             {
                 ride.AddReport(report);
             }
+        }
 
+        public void AddReportToDB(Report report)
+        {
+            string sql = $"INSERT INTO Reports VALUES ({(int)report.Status}, '{report.ReportTime.ToString("yyyy-MM-dd HH:mm:ss")}', '{report.Notes}', {report.Ride.Id})";
+            ExecuteNonQuery(sql);
         }
     }
 }
