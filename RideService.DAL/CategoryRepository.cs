@@ -32,5 +32,11 @@ namespace RideService.DAL
             DataTable dataTable = ExecuteQuery(sql);
             return HandleData(dataTable);
         }
+
+        public void AddCategoryToDB(RideCategory rideCategory)
+        {
+            string sql = $"INSERT INTO RideCategories VALUES('{rideCategory.Name}', '{rideCategory.Description}')";
+            ExecuteNonQuery(sql);
+        }
     }
 }

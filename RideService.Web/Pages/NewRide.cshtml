@@ -4,23 +4,47 @@
     ViewData["Title"] = "NewRide";
 }
 
-<h1>Opret ny ride</h1>
-
 <article>
-    <form method="post">
-        @Html.AntiForgeryToken();
-        <input type="text" name="Ride.Name" placeholder="Indtast navn..." size="10" required />
-        <input type="text" name="Ride.Description" placeholder="Indtast beskrivelse..." size="20" required />
+    <h2>Ny ride</h2>
+    <X:form asp-page-handler="CreateRide" method="post">
+        <label>Navn: </label>
+        <input type="text" name="Ride.Name" placeholder="Indtast navn..." required style="width: 100%" />
+        <br />
+        <label>Beskrivelse: </label>
+        <textarea name="Ride.Description" placeholder="Indtast beskrivelse..." rows="5" cols="40" required></textarea>
+        <br />
+        <label>Kategori: </label>
         <select name="CategoryId">
             @foreach (RideCategory category in Model.Categories)
             {
                 <option value="@category.Id">@category.Name</option>
             }
         </select>
+        <br />
         <button>Indsend</button>
-    </form>
-    <hr />
-    @if (Model.Ride != null)
+    </X:form>
+</article>
+<article>
+    <h2>Ny kategori</h2>
+    <x:form asp-page-handler="CreateCategory" method="post">
+        <label>Navn: </label>
+        <input type="text" name="Category.Name" placeholder="Indtast navn..." style="width: 100%" required />
+        <label>Beskrivelse: </label>
+        <textarea name="Category.Description" placeholder="Indtast beskrivelse..." cols="40" rows="5" required ></textarea>
+        <br />
+        @if (Model.Handler == "CreateCategory")
+        {
+            <p>Kategori oprettet.</p>
+        }
+        else
+        {
+            <br />
+        }
+        <button>Indsend</button>
+    </x:form>
+</article>
+<article>
+    @if (Model.Handler == "CreateRide")
     {
         <h2>@Model.Ride.Name</h2>
         <hr />
