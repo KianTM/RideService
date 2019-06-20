@@ -4,7 +4,6 @@
     ViewData["Title"] = "ViewRide";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
-
 <article>
     <h2>Forlystelse</h2>
     <img src="/img/headers/@(Model.Ride.Name)-big.jpg" alt="@Model.Ride.Name" />
@@ -37,12 +36,29 @@
 </article>
 @if (Model.Report != null)
 {
-<article>
-    <h2>Oprettet rapport</h2>
-    <p>Status: @Model.Report.Status</p>
-    <hr />
-    <p>Oprettelsestidspunt: @Model.Report.ReportTime.ToLongTimeString()</p>
-    <hr />
-    <p>@Model.Report.Notes</p>
-</article>
+    <article>
+        <h2>Oprettet rapport</h2>
+        <p>Status: @Model.Report.Status</p>
+        <hr />
+        <p>Oprettelsestidspunt: @Model.Report.ReportTime.ToLongTimeString()</p>
+        <hr />
+        <p>@Model.Report.Notes</p>
+    </article>
+}
+else
+{
+    <article>
+        <h2 style="color: rgba(0,0,0,0)"></h2>
+        <p style="color: rgba(0,0,0,0)"></p>
+    </article>
+}
+@foreach (Report report in Model.Ride.ReportsOrdered)
+{
+    <article>
+        <h2>@report.ReportTime.ToString()</h2>
+        <hr />
+        <p>Status: @report.Status</p>
+        <h3>Noter:</h3>
+        <p>@report.Notes</p>
+    </article>
 }
