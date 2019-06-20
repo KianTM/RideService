@@ -19,16 +19,20 @@ namespace RideService.Web.Pages
         [BindProperty]
         public Ride Ride { get; set; }
         [BindProperty]
+        public RideCategory Category { get; set; }
+        [BindProperty]
         public int CategoryId { get; set; }
         public List<RideCategory> Categories { get; set; } = new List<RideCategory>();
+        public string Handler { get; set; }
 
         public void OnGet()
         {
-            
+
         }
 
-        public void OnPost()
+        public void OnPostCreateRide()
         {
+            Handler = "CreateRide";
             foreach (RideCategory category in Categories)
             {
                 if (category.Id == CategoryId)
@@ -39,6 +43,13 @@ namespace RideService.Web.Pages
             }
             RideRepository rr = new RideRepository();
             rr.AddRideToDB(Ride);
+        }
+
+        public void OnPostCreateCategory()
+        {
+            Handler = "CreateCategory";
+            CategoryRepository cr = new CategoryRepository();
+            cr.AddCategoryToDB(Category);
         }
     }
 }

@@ -46,6 +46,10 @@ namespace RideService.Entities
 
         public string GetShortDescription()
         {
+            if (Description.Length < 50)
+            {
+                return Description;
+            }
             return $"{Description.Remove(50)}...";
         }
 
