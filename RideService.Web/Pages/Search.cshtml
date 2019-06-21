@@ -4,26 +4,61 @@
     ViewData["Title"] = "Search";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
-<h1>Søgning</h1>
 
-@{
-    if (Model.FilteredRides.Count == 0)
-    {
-        <p>Ingen resultater blev fundet</p>
-    }
-    else
-    {
-        foreach (Ride ride in Model.FilteredRides)
+<x:form asp-page-handler="RideSearch" method="post">
+    <label>Forlystelsessøgning: </label>
+    <input name="nameQuery" size="20" placeholder="Indtast forstylsesnavn her..." />
+    <select name="CategoryQuery">
+        @foreach (RideCategory category in Model.Categories)
         {
-            <article>
-                <a href="/ViewRide/@ride.Id"><img src="/img/headers/@(ride.Name)-big.jpg" alt="@ride.Name" /></a>
-                <hr />
-                <p>Navn: @ride.Name</p>
-                <hr />
-                <p>Categori: @ride.Category.Name</p>
-                <hr />
-                <p>Status: @ride.GetStatus()</p>
-            </article>
+            <option value="@category.Id">@category.Name</option>
+        }
+    </select>
+    <select name="StatusQuery">
+        <option value="@((int)Status.Working)">Kører</option>
+        <option value="@((int)Status.Broken)">Ude af drift</option>
+        <option value="@((int)Status.BeingRepaired)">Under reperation</option>
+    </select>
+    <button>Søg</button>
+</x:form>
+<x:form asp-page-handler="ReportSearch">
+    <label>Rapportsøgning: </label>
+    <select>
+        @foreach (Ride ride in Model.Rides)
+        {
+            <option value="@ride.Id">@ride.Name</option>
+        }
+    </select>
+    <input type="date" name="DateQuery" />
+    <select name="StatusQuery">
+        <option value="@((int)Status.Working)">Kører</option>
+        <option value="@((int)Status.Broken)">Ude af drift</option>
+        <option value="@((int)Status.BeingRepaired)">Under reperation</option>
+    </select>
+    <input type="text" name="NotesQuery" placeholder="Noter..." size="20"/>
+    <button>Søg</button>
+</x:form>
+@{
+    if (Model.Handler == "RideSearch")
+    {
+        if (Model.FilteredRides.Count == 0)
+        {
+            <p>Ingen resultater blev fundet</p>
+        }
+        else
+        {
+            foreach (Ride ride in Model.FilteredRides)
+            {
+                <article>
+                    <a href="/ViewRide/@ride.Id"><img src="/img/headers/@(ride.Name)-big.jpg" alt="@ride.Name" /></a>
+                    <hr />
+                    <p>Navn: @ride.Name</p>
+                    <hr />
+                    <p>Categori: @ride.Category.Name</p>
+                    <hr />
+                    <p>Status: @ride.GetStatus()</p>
+                </article>
+            }
         }
     }
 }

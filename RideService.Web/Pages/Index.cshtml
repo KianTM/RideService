@@ -5,22 +5,6 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<form action="Search" method="get">
-    <label>Søg: </label>
-    <input name="nameQuery" size="20" placeholder="Indtast forstylsesnavn her..."/>
-    <select name="CategoryQuery">
-        @foreach(RideCategory category in Model.Categories)
-         {
-            <option value="@category.Id">@category.Name</option>
-         }
-    </select>
-    <select name="StatusQuery">
-        <option value="@((int)Status.Working)">Kører</option>
-        <option value="@((int)Status.Broken)">Ude af drift</option>
-        <option value="@((int)Status.BeingRepaired)">Under reperation</option>
-    </select>
-    <button>Søg</button>
-</form>
 @{
     foreach (Ride ride in Model.AllRides)
     {
