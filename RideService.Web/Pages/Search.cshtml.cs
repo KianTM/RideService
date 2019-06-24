@@ -11,35 +11,35 @@ namespace RideService.Web.Pages
 {
     public class SearchModel : PageModel
     {
-        [BindProperty(SupportsGet = true)]
-        public string NameQuery {get; set; } = "";
-        [BindProperty(SupportsGet = true)]
-        public int StatusQuery { get; set; }
-        [BindProperty(SupportsGet = true)]
-        public int CategoryQuery { get; set; }
-        public List<Ride> FilteredRides { get; set; } = new List<Ride>();
-
-        public void OnGet()
+        public SearchModel()
         {
+            CategoryRepository cr = new CategoryRepository();
+            Categories = cr.GetAllCategories();
+            RideRepository rr = new RideRepository();
+            Rides = rr.GetAllRides();
+        }
+        public List<RideCategory> Categories { get; set; }
+        public List<Ride> Rides { get; set; }
+        [BindProperty]
+        public string NameQuery { get; set; } = "";
+        [BindProperty]
+        public int StatusQuery { get; set; }
+        [BindProperty]
+        public int CategoryQuery { get; set; }
+        [BindProperty]
+        public DateTime DateQuery { get; set; }
+        public List<Ride> FilteredRides { get; set; } = new List<Ride>();
+        public string Handler { get; set; }
+
+        public void OnPostRideSearch()
+        {
+            Handler = "RideSearch";
             if (NameQuery == null)
             {
                 NameQuery = "";
             }
-            RideRepository riRepo = new RideRepository();
-            List<Ride> rides = riRepo.GetAllRides();
-            foreach (Ride ride in rides)
+            foreach (Ride ride in Rides)
             {
-                //if (NameQuery == "")
-                //{
-                //    if (ride.Category.Id == CategoryQuery)
-                //    {
-                //        if ((int)ride.Status == StatusQuery)
-                //        {
-                //            FilteredRides.Add(ride);
-                //            break;
-                //        }
-                //    }
-                //}
                 if (ride.Name.ToLower().Contains(NameQuery.ToLower()))
                 {
                     if (ride.Category.Id == CategoryQuery)
