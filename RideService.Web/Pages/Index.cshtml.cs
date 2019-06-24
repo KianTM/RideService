@@ -15,10 +15,13 @@ namespace RideService.Web.Pages
         public List<Ride> AllRides { get; set; }
         public List<RideCategory> Categories { get; set; }
         public string WeatherIconSrc { get; set; }
+        public double Temperature { get; set; }
         public void OnGet()
         {
+            string city = "aalborg";
             OpenWeatherMapAPI owmAPI = new OpenWeatherMapAPI();
-            WeatherIconSrc = owmAPI.GetIconUrl("aalborg");
+            WeatherIconSrc = owmAPI.GetIconUrl(city);
+            Temperature = owmAPI.GetCurrentTemperature(city);
             CategoryRepository cr = new CategoryRepository();
             Categories = cr.GetAllCategories();
             RideRepository rr = new RideRepository();

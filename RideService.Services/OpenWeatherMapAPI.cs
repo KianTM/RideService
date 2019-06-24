@@ -28,7 +28,9 @@ namespace RideService.Services
 
         public double GetCurrentTemperature(string city)
         {
-            throw new NotImplementedException();
+            WeatherData weather = GetWeather(city);
+            double temp = weather.Main.Temp;
+            return temp;
         }
     }
 }

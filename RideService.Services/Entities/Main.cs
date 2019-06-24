@@ -6,6 +6,6 @@ namespace RideService.Services.Entities
 {
     public class Main
     {
-        public decimal Temp { get; set; }
+        public double Temp { get; set; }
     }
 }
