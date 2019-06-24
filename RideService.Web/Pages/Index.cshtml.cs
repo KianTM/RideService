@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RideService.Entities;
 using RideService.DAL;
+using RideService.Services;
 
 namespace RideService.Web.Pages
 {
@@ -13,8 +14,11 @@ namespace RideService.Web.Pages
     {
         public List<Ride> AllRides { get; set; }
         public List<RideCategory> Categories { get; set; }
+        public string WeatherIconSrc { get; set; }
         public void OnGet()
         {
+            OpenWeatherMapAPI owmAPI = new OpenWeatherMapAPI();
+            WeatherIconSrc = owmAPI.GetIconUrl("aalborg");
             CategoryRepository cr = new CategoryRepository();
             Categories = cr.GetAllCategories();
             RideRepository rr = new RideRepository();
