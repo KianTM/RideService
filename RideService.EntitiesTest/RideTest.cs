@@ -6,7 +6,7 @@ using Xunit;
 
 namespace RideService.EntitiesTest
 {
-    public class Class1
+    public class RideTest
     {
         [Fact]
         public void DaysSinceLastShutdown_ReturnsCorrectDaysWithOneBrokenReport()
